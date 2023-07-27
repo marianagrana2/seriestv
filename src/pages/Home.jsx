@@ -36,13 +36,13 @@ const Home = () => {
           </div>
         </form>
         <div className='row'>
-          <h3>Resultados</h3>
+          <h3>Series</h3>
           {
             series.map((serie) => (
               <div className='col-4' key={serie.show.name}>
                 <div className='card'>
                   <div className='card-body'>
-                    <img className='card-img-top' src={serie.show.image.medium} alt={`${serie.show.name} image`} />
+                    <img className='card-img-top' src={serie.show.image?.medium} alt={`${serie.show.name} image`} />
                     <a href={serie.show.url} target='_blank' rel='noopener noreferrer'>{serie.show.name}</a>
                   </div>
                 </div>
