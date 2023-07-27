@@ -14,23 +14,27 @@ const Home = () => {
   const handleSearch = (event) => {
     setQuery(event.target.value)
   }
-
+  const handleSubmit = (event) => {
+    event.preventDefault()
+  }
   return (
     <>
       <>
         <h1>Home</h1>
-        <div className='input-group mb-3'>
-          <input
-            className='form-control'
-            type='text'
-            placeholder='Buscar Serie'
-            onChange={handleSearch}
-            value={query}
-          />
-          <div className='input-group-append'>
-            <button type='button' className='btn btn-info btn-lg'>Buscar</button>
+        <form onSubmit={handleSubmit}>
+          <div className='input-group mb-3'>
+            <input
+              className='form-control'
+              type='text'
+              placeholder='Buscar Serie'
+              onChange={handleSearch}
+              value={query}
+            />
+            <div className='input-group-append'>
+              <button type='submit' className='btn btn-info btn-lg'>Buscar</button>
+            </div>
           </div>
-        </div>
+        </form>
         <div className='row'>
           <h3>Resultados</h3>
           {
