@@ -22,3 +22,8 @@ h1{
   display: flex;
   padding-left: 38px;
 }
+
+.col-4{
+  margin-left: 22px;
+  margin-bottom: 20px;
+}
