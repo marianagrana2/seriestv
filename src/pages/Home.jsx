@@ -43,7 +43,7 @@ const Home = () => {
                 <div className='card'>
                   <div className='card-body'>
                     <img className='card-img-top' src={serie.show.image.medium} alt={`${serie.show.name} image`} />
-                    <li>{serie.show.name}</li>
+                    <a href={serie.show.url} target='_blank' rel='noopener noreferrer'>{serie.show.name}</a>
                   </div>
                 </div>
               </div>
