@@ -26,12 +26,12 @@ const Home = () => {
             <input
               className='form-control'
               type='text'
-              placeholder='Buscar Serie'
+              placeholder='Search Series'
               onChange={handleSearch}
               value={query}
             />
             <div className='input-group-append'>
-              <button type='submit' className='btn btn-info btn-lg'>Buscar</button>
+              <button type='submit' className='btn btn-info btn-lg'>Search</button>
             </div>
           </div>
         </form>
