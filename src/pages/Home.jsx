@@ -38,7 +38,7 @@ const Home = () => {
               <div className='col-4' key={serie.show.name}>
                 <div className='card'>
                   <div className='card-body'>
-                    <img className='card-img-top' alt={`${serie.show.name} image`} src='#' />
+                    <img className='card-img-top' src={serie.show.image.medium} alt={`${serie.show.name} image`} />
                     <li>{serie.show.name}</li>
                   </div>
                 </div>
