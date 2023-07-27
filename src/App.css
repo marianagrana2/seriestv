@@ -1,0 +1,24 @@
+body{
+  margin:0;
+  padding:0;
+}
+.input-group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 25px;
+  padding-right: 30px;
+}
+.input-group-append{
+  padding-left: 10px;
+}
+
+h1{
+  display: flex;
+  padding-left: 25px;
+}
+
+.row h3{
+  display: flex;
+  padding-left: 38px;
+}
