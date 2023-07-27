@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import { Link } from 'react-router-dom'
 const Home = () => {
   const [series, setSeries] = useState([])
   const [query, setQuery] = useState('')
@@ -43,7 +43,13 @@ const Home = () => {
                 <div className='card'>
                   <div className='card-body'>
                     <img className='card-img-top' src={serie.show.image?.medium} alt={`${serie.show.name} image`} />
-                    <a href={serie.show.url} target='_blank' rel='noopener noreferrer'>{serie.show.name}</a>
+                    <Link
+                      className='card-title'
+                      to={`/serie/${serie.show.id}`}
+                    >
+                      {serie.show.name}
+                    </Link>
+
                   </div>
                 </div>
               </div>

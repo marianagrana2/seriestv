@@ -1,15 +1,21 @@
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-const SerieDetail = () => {
-  const { id } = useParams()
+const SeriesDetail = () => {
+  const { idSerie } = useParams()
   const [serie, setSerie] = useState(null)
   useEffect(() => {
-    fetch(`https://api.tvmaze.com/shows/${id}`)
+    fetch(`https://api.tvmaze.com/shows/${idSerie}`)
       .then(response => response.json())
       .then(data => setSerie(data))
       .catch(error => console.error(error))
-  }, [id]
+  }, [idSerie]
   )
+  if (!serie) {
+    return <p>Loading... </p>
+  }
+  if (!serie.show) {
+    return <p> Serie no encontrada.</p>
+  }
   return (
     <>
       <div className='container mt-3'>
@@ -25,6 +31,9 @@ const SerieDetail = () => {
             <div className='col-me-4'>
               <img className='card-img-top' src={serie.show.image?.medium} alt={`${serie.show.name} image`} />
             </div>
+            <div className='col-md-8'>
+              {serie?.summary}
+            </div>
           </div>
         </div>
       </div>
@@ -34,4 +43,4 @@ const SerieDetail = () => {
   )
 }
 
-export default SerieDetail
+export default SeriesDetail
