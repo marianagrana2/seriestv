@@ -6,7 +6,7 @@ const RoutesIndex = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/serie/:idSerie' element={<SeriesDetail />} />
+      <Route path='/serie/:id' element={<SeriesDetail />} />
     </Routes>
   )
 }
