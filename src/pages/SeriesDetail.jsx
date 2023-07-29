@@ -14,9 +14,8 @@ const SeriesDetail = () => {
   if (!serie) {
     return <p>Loading... </p>
   }
-  if (!serie.name || !serie.summary || !serie.image?.medium) {
-    return <p>Datos de serie no válidos.</p> // Verificar si la serie existe y sus propiedades estén definidas.
-  }
+  const summaryWithoutP = serie.summary.replace(/<\/?p>/g, ' ')
+
   return (
     <>
       <div className='container mt-3'>
@@ -26,7 +25,7 @@ const SeriesDetail = () => {
           </div>
           <div className='card-body'>
             <h4>Summary</h4>
-            <p>{serie.summary}</p>
+            <div dangerouslySetInnerHTML={{ __html: summaryWithoutP }} />
           </div>
           <div className='row'>
             <div className='col-me-4'>
@@ -35,12 +34,24 @@ const SeriesDetail = () => {
             <div className='col-md-8'>
               <p>Genres:{serie.genres}</p>
               <h4>Seasons</h4>
+              <div className='list-group'>
+                <ul className='list-group list-group-flush'>
+                  <li className='list-group-item'>Season 1</li>
+                  <li className='list-group-item'>Season 2</li>
+                </ul>
+              </div>
               <h4>Cast</h4>
+              <div className='card' style={{ width: '18rem' }}>
+                <img className='card-img-top' src='' alt='Cast Image' />
+                <div className='card-body'>
+                  <h5 className='card-title'>Cast Name</h5>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </>
 
   )
