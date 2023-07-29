@@ -30,9 +30,6 @@ const Home = () => {
               onChange={handleSearch}
               value={query}
             />
-            <div className='input-group-append'>
-              <button type='submit' className='btn btn-info btn-lg'>Search</button>
-            </div>
           </div>
         </form>
         <div className='row'>
