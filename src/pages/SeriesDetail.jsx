@@ -4,6 +4,7 @@ const SeriesDetail = () => {
   const { id } = useParams()
   const [serie, setSerie] = useState(null)
   const [seasons, setSeasons] = useState([])
+  const [episodes, setEpisodes] = useState([])
   const [cast, setCast] = useState([])
   useEffect(() => {
     fetch(`https://api.tvmaze.com/shows/${id}`)
@@ -14,6 +15,11 @@ const SeriesDetail = () => {
     fetch(`https://api.tvmaze.com/shows/${id}/seasons`)
       .then(response => response.json())
       .then(data => setSeasons(data))
+      .catch(error => console.error(error))
+
+    fetch(`https://api.tvmaze.com/seasons/${id}/episodes`)
+      .then(response => response.json())
+      .then(data => setEpisodes(data))
       .catch(error => console.error(error))
 
     fetch(`https://api.tvmaze.com/shows/${id}/cast`)
@@ -46,18 +52,31 @@ const SeriesDetail = () => {
             <div className='col-md-8'>
               <p>Genres:{serie.genres}</p>
               <h4>Seasons</h4>
-              <div className='card-body'>
-                <div className='list-group'>
-                  <ul className='list-group list-group-flush'>
-                    {seasons.map(season => (
-                      <li key={season.id} className='list-group-item'>
-                        Season {season.number}
-                      </li>
-                    )
-                    )}
-                  </ul>
+              <div id='accordion'>
+                <div className='card'>
+                  <div className='card-body'>
+                    <div className='list-group'>
+                      <ul className='list-group list-group-flush'>
+                        {seasons.map(season => (
+                          <li key={season.id} className='list-group-item'>
+                            Season {season?.number}
+                          </li>
+                        )
+                        )}
+                        {episodes.map(episode => (
+                          <li key={episode.id} className='list-group-item'>
+                            Episode {episode?.name}
+                          </li>
+                        )
+                        )}
+
+                      </ul>
+                    </div>
+                  </div>
                 </div>
+
               </div>
+
               <h4>Cast</h4>
               <div className='card'>
                 <div className='card-body'>
