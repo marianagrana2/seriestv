@@ -3,10 +3,22 @@ import { useState, useEffect } from 'react'
 const SeriesDetail = () => {
   const { id } = useParams()
   const [serie, setSerie] = useState(null)
+  const [seasons, setSeasons] = useState([])
+  const [cast, setCast] = useState([])
   useEffect(() => {
     fetch(`https://api.tvmaze.com/shows/${id}`)
       .then(response => response.json())
       .then(data => setSerie(data))
+      .catch(error => console.error(error))
+
+    fetch(`https://api.tvmaze.com/shows/${id}/seasons`)
+      .then(response => response.json())
+      .then(data => setSeasons(data))
+      .catch(error => console.error(error))
+
+    fetch(`https://api.tvmaze.com/shows/${id}/cast`)
+      .then(response => response.json())
+      .then(data => setCast(data))
       .catch(error => console.error(error))
   }, [id]
   )
@@ -34,17 +46,33 @@ const SeriesDetail = () => {
             <div className='col-md-8'>
               <p>Genres:{serie.genres}</p>
               <h4>Seasons</h4>
-              <div className='list-group'>
-                <ul className='list-group list-group-flush'>
-                  <li className='list-group-item'>Season 1</li>
-                  <li className='list-group-item'>Season 2</li>
-                </ul>
+              <div className='card-body'>
+                <div className='list-group'>
+                  <ul className='list-group list-group-flush'>
+                    {seasons.map(season => (
+                      <li key={season.id} className='list-group-item'>
+                        Season {season.number}
+                      </li>
+                    )
+                    )}
+                  </ul>
+                </div>
               </div>
               <h4>Cast</h4>
-              <div className='card' style={{ width: '18rem' }}>
-                <img className='card-img-top' src='' alt='Cast Image' />
+              <div className='card'>
                 <div className='card-body'>
-                  <h5 className='card-title'>Cast Name</h5>
+                  {cast.length > 0
+                    ? (
+                        cast.map(castItem => (
+                          <div key={castItem.person.id}>
+                            <img className='card-img-top' src={castItem.person.image?.medium} alt='Cast Image' />
+                            <h5 className='card-title'>
+                              {castItem.person?.name}
+                            </h5>
+                          </div>
+                        ))
+                      )
+                    : (<p>No cast information available.</p>)}
                 </div>
               </div>
             </div>
