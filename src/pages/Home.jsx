@@ -39,7 +39,7 @@ const Home = () => {
           <h3>Series</h3>
           {
             series.map((serie) => (
-              <div className='col-4' key={serie.show.name}>
+              <div className='col-4' key={serie.show.id}>
                 <div className='card'>
                   <div className='card-body'>
                     <img className='card-img-top' src={serie.show.image?.medium} alt={`${serie.show.name} image`} />

@@ -10,6 +10,7 @@ const SeriesDetail = () => {
       .catch(error => console.error(error))
   }, [id]
   )
+
   if (!serie) {
     return <p>Loading... </p>
   }

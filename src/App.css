@@ -17,7 +17,11 @@ h1{
   display: flex;
   padding-left: 25px;
 }
-
+.my-0{
+  text-decoration: none;
+  font-size: 30px;
+  color:black;
+}
 .row h3{
   display: flex;
   padding-left: 38px;
