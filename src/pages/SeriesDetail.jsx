@@ -33,7 +33,14 @@ const SeriesDetail = () => {
     return <p>Loading... </p>
   }
   const summaryWithoutP = serie.summary.replace(/<\/?p>/g, ' ')
-
+  const episodesBySeason = {}
+  episodes.forEach(episode => {
+    const seasonNumber = episode?.season
+    if (!episodesBySeason[seasonNumber]) {
+      episodesBySeason[seasonNumber] = []
+    }
+    episodesBySeason[seasonNumber].push(episode)
+  })
   return (
     <>
       <div className='container mt-3'>
@@ -53,30 +60,36 @@ const SeriesDetail = () => {
               <p>Genres:{serie.genres}</p>
               <h4>Seasons</h4>
               <div id='accordion'>
-                <div className='card'>
-                  <div className='card-body'>
-                    <div className='list-group'>
-                      <ul className='list-group list-group-flush'>
-                        {seasons.map(season => (
-                          <li key={season.id} className='list-group-item'>
-                            Season {season?.number}
-                          </li>
-                        )
-                        )}
-                        {episodes.map(episode => (
-                          <li key={episode.id} className='list-group-item'>
-                            Episode {episode?.name}
-                          </li>
-                        )
-                        )}
+                {cast.length > 0
+                  ? (
+                      seasons.map(season => (
+                        <div className='card' key={season?.id}>
+                          <div className='card-header' id={`heading${season.id}`}>
+                            <h5 className='mb-0'> Season {season.number}
+                            </h5>
+                          </div>
+                          <div className='card-body'>
+                            {episodesBySeason[season.number]?.length > 0
+                              ? (
+                                <ul className='list-group list-group-flush'>
+                                  {episodesBySeason[season.number]?.map(episode => (
+                                    <li key={episode.id} className='list-group-item'>
+                                      Episode {episode?.name}
+                                    </li>
+                                  ))}
+                                </ul>
+                                )
+                              : (
+                                <p>No episodes information available.</p>
+                                )}
+                          </div>
+                        </div>
 
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                      ))
+                    )
+                  : (<p> No seasons information available.</p>)}
 
               </div>
-
               <h4>Cast</h4>
               <div className='card'>
                 <div className='card-body'>
@@ -84,7 +97,11 @@ const SeriesDetail = () => {
                     ? (
                         cast.map(castItem => (
                           <div key={castItem.person.id}>
-                            <img className='card-img-top' src={castItem.person.image?.medium} alt='Cast Image' />
+                            <img
+                              className='card-img-top'
+                              src={castItem.person.image?.medium}
+                              alt='Cast Image'
+                            />
                             <h5 className='card-title'>
                               {castItem.person?.name}
                             </h5>
@@ -100,7 +117,6 @@ const SeriesDetail = () => {
 
       </div>
     </>
-
   )
 }
 
