@@ -20,7 +20,6 @@ const Home = () => {
   return (
     <>
       <>
-        <h1>Home</h1>
         <form onSubmit={handleSubmit}>
           <div className='input-group mb-3'>
             <input
@@ -38,7 +37,7 @@ const Home = () => {
             series.map((serie) => (
               <div className='col-4' key={serie.show.id}>
                 <div className='card'>
-                  <div className='card-body'>
+                  <div className='card-body text-dark'>
                     <img className='card-img-top' src={serie.show.image?.medium} alt={`${serie.show.name} image`} />
                     <Link
                       className='card-title'

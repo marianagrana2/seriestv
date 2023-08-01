@@ -48,7 +48,7 @@ const SeriesDetail = () => {
           <div className='card-header'>
             <h3>{serie.name}</h3>
           </div>
-          <div className='card-body'>
+          <div className='card-body '>
             <h4>Summary</h4>
             <div dangerouslySetInnerHTML={{ __html: summaryWithoutP }} />
           </div>
@@ -57,7 +57,7 @@ const SeriesDetail = () => {
               <img src={serie.image?.medium} alt={`${serie.name} image`} className='img-fluid' />
             </div>
             <div className='col-md-8'>
-              <p>Genres:{serie.genres}</p>
+              <p className='text-secondary'>Genres: {serie.genres}</p>
               <h4>Seasons</h4>
               <div id='accordion'>
                 {cast.length > 0
@@ -73,7 +73,7 @@ const SeriesDetail = () => {
                               ? (
                                 <ul className='list-group list-group-flush'>
                                   {episodesBySeason[season.number]?.map(episode => (
-                                    <li key={episode.id} className='list-group-item'>
+                                    <li key={episode.id} className='list-group-item text-secondary'>
                                       Episode {episode?.name}
                                     </li>
                                   ))}
@@ -96,15 +96,15 @@ const SeriesDetail = () => {
                   {cast.length > 0
                     ? (
                         cast.map(castItem => (
-                          <div key={castItem.person.id}>
+                          <div className='col-4' key={castItem.person.id}>
                             <img
-                              className='card-img-top'
+                              className='card-img-top rounded mx-auto d-block img-fluid'
                               src={castItem.person.image?.medium}
                               alt='Cast Image'
                             />
-                            <h5 className='card-title'>
+                            <h6 className='card-title text-secondary'>
                               {castItem.person?.name}
-                            </h5>
+                            </h6>
                           </div>
                         ))
                       )
